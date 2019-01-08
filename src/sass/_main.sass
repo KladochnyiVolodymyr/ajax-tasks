@@ -5,19 +5,34 @@
 		display: block
 .list
 	width: 40%
+	margin-right: 20px
+	li
+		border-top: 1px solid red
+		border-bottom: 1px solid red
+		padding: 10px
 	a
 		text-decoration: none
 		font-size: 20px
 		display: block
 .post
+	&__title
+		line-height: 1
+		text-align: center
+		margin-bottom: 20px
 	&__content
 		font-size: 22px
 	&__btn
 		display: none
+		text-align: center
+		font-size: 35px
 		&.is-active
 			display: block
 		
 .comment
-	margin-bottom: 20px
+	//margin-bottom: 20px
+	border-top: 1px solid red
+	padding: 20px 0px
+	&:first-child
+		border: none
 	p
 		font-size: 20px
