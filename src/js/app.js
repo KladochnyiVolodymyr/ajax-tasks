@@ -1,5 +1,5 @@
 import sayHello from './lib/sayHello.js';
-
+import './components/exchanger.js';
 sayHello();
 
 $.ajax({
