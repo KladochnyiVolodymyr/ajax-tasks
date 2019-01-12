@@ -1,88 +1,60 @@
-let resultList = function(result, cryptoName, currencySign) {
+let resultListPrice = function(result, cryptoName, currencySign) {
+  $('.' + cryptoName.toLowerCase() + '-price').html(result.volume);
   $('.' + cryptoName.toLowerCase() + '-list__hour').html(result.changes.price.hour + currencySign);
   $('.' + cryptoName.toLowerCase() + '-list__day').html(result.changes.price.day + currencySign);
   $('.' + cryptoName.toLowerCase() + '-list__week').html(result.changes.price.week + currencySign);
   $('.' + cryptoName.toLowerCase() + '-list__month').html(result.changes.price.month + currencySign);
+
+  $('.' + cryptoName.toLowerCase() + '-list__hour_percent').html(result.changes.percent.hour + '%');
+  $('.' + cryptoName.toLowerCase() + '-list__day_percent').html(result.changes.percent.day + '%');
+  $('.' + cryptoName.toLowerCase() + '-list__week_percent').html(result.changes.percent.week + '%');
+  $('.' + cryptoName.toLowerCase() + '-list__month_percent').html(result.changes.percent.month + '%');
+
+  $('.block__list span').each(function() {
+    if( $( this ).text().slice(0, -1) < 0 ) {
+      $(this).addClass('is-lower');
+    }
+  });
+
 };
 
-let currencyСhange = function(cryptocurrency, currency) {
+let currencyСhange = function(cryptocurrency, currency, sign) {
   $.ajax({
-    url: 'https://apiv2.bitcoinaverage.com/indices/global/ticker/' + cryptocurrency + currency,
+    url: `https://apiv2.bitcoinaverage.com/indices/global/ticker/${cryptocurrency + currency}`,
     success: function(result) {
-      resultList(result,cryptocurrency,'$');
+      resultListPrice(result, cryptocurrency, sign);
     },
     error: function(data) {
     }
   });
 };
 
-
 $('.js-select').change(function() {
   if($(this).val() === 'usd') {
-    currencyСhange('ETH','USD');
-    /* // request for ETH
-    $.ajax({
-      url: 'https://apiv2.bitcoinaverage.com/indices/global/ticker/ETHUSD',
-      success: function(result) {
-        $('.ethereum-list__hour').html(result.changes.price.hour + '$');
-        $('.ethereum-list__day').html(result.changes.price.day + '$');
-        $('.ethereum-list__week').html(result.changes.price.week + '$');
-        $('.ethereum-list__month').html(result.changes.price.month + '$');
-      },
-      error: function(data) {
-      }
-    });
-    // request for LTC
-    $.ajax({
-      url: 'https://apiv2.bitcoinaverage.com/indices/global/ticker/LTCUSD',
-      success: function(result) {
-        $('.litecoin-list__hour').html(result.changes.price.hour + '$');
-        $('.litecoin-list__day').html(result.changes.price.day + '$');
-        $('.litecoin-list__week').html(result.changes.price.week + '$');
-        $('.litecoin-list__month').html(result.changes.price.month + '$');
-      },
-      error: function(data) {
-      }
-    });
-    // request for BTC
-    $.ajax({
-      url: 'https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD',
-      success: function(result) {
-        $('.bitcoin-list__hour').html(result.changes.price.hour + '$');
-        $('.bitcoin-list__day').html(result.changes.price.day + '$');
-        $('.bitcoin-list__week').html(result.changes.price.week + '$');
-        $('.bitcoin-list__month').html(result.changes.price.month + '$');
-      },
-      error: function(data) {
-      }
-    }); */
+    currencyСhange('ETH','USD','$');
+    currencyСhange('LTC','USD','$');
+    currencyСhange('BTC','USD','$');
   }else if($(this).val() === 'eur') {
-    
+    currencyСhange('ETH','EUR','€');
+    currencyСhange('LTC','EUR','€');
+    currencyСhange('BTC','EUR','€');
   }else if($(this).val() === 'rub') {
-    
+    currencyСhange('ETH','RUB','₽');
+    currencyСhange('LTC','RUB','₽');
+    currencyСhange('BTC','RUB','₽');
   }else if($(this).val() === 'gbp') {
-    
+    currencyСhange('ETH','GBP','£');
+    currencyСhange('LTC','GBP','£');
+    currencyСhange('BTC','GBP','£');
   }
 });
 
-
-
-/* $('.ethereum-block__check').click(function() {
+$('.block__check').click(function() {
   if( $(this).prop('checked') === true ) {
-    if( $('.js-select').val() === 'usd' ) {
-      $.ajax({
-        url: 'https://apiv2.bitcoinaverage.com/indices/global/ticker/ETHUSD',
-        success: function(result) {
-          $('.ethereum-list__hour').html(result.changes.percent.hour + '%');
-          $('.ethereum-list__day').html(result.changes.percent.day + '%');
-          $('.ethereum-list__week').html(result.changes.percent.week + '%');
-          $('.ethereum-list__month').html(result.changes.percent.month + '%');
-        },
-        error: function(data) {
-        }
-      });
-    }
+    $(this).parent().siblings('.block__list').addClass('is-hide');
+    $(this).parent().siblings('.percent-list').addClass('is-show');
   }else{
-      
+    $(this).parent().siblings('.block__list').removeClass('is-hide');
+    $(this).parent().siblings('.percent-list').removeClass('is-show');
   }
-}); */
+});
