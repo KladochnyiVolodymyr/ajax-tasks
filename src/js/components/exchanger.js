@@ -6,7 +6,7 @@ let signDictionary = {
 };
 
 let resultListPrice = function(result, cryptoName, currencySign) {
-  $('.' + cryptoName.toLowerCase() + '-price').html(result.volume);
+  $('.' + cryptoName.toLowerCase() + '-price').html(currencySign + result.volume);
   $('.' + cryptoName.toLowerCase() + '-list__hour').html(result.changes.price.hour + currencySign);
   $('.' + cryptoName.toLowerCase() + '-list__day').html(result.changes.price.day + currencySign);
   $('.' + cryptoName.toLowerCase() + '-list__week').html(result.changes.price.week + currencySign);
@@ -35,6 +35,10 @@ let currencyСhange = function(cryptocurrency, currency, sign) {
     }
   });
 };
+
+currencyСhange('ETH','USD',signDictionary['USD']);
+currencyСhange('LTC','USD',signDictionary['USD']);
+currencyСhange('BTC','USD',signDictionary['USD']);
 
 $('.js-select').change(function() {
   let currencySign = $(this).val().toUpperCase();
