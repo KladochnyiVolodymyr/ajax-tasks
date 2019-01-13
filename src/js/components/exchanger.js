@@ -1,3 +1,10 @@
+let signDictionary = {
+  'USD':'$',
+  'EUR':'€',
+  'RUB':'₽',
+  'GBP':'£'
+};
+
 let resultListPrice = function(result, cryptoName, currencySign) {
   $('.' + cryptoName.toLowerCase() + '-price').html(result.volume);
   $('.' + cryptoName.toLowerCase() + '-list__hour').html(result.changes.price.hour + currencySign);
@@ -30,9 +37,10 @@ let currencyСhange = function(cryptocurrency, currency, sign) {
 };
 
 $('.js-select').change(function() {
-  currencyСhange('ETH',$(this).val().toUpperCase(),'$');
-  currencyСhange('LTC',$(this).val().toUpperCase(),'$');
-  currencyСhange('BTC',$(this).val().toUpperCase(),'$');
+  let currencySign = $(this).val().toUpperCase();
+  currencyСhange('ETH',currencySign,signDictionary[currencySign]);
+  currencyСhange('LTC',currencySign,signDictionary[currencySign]);
+  currencyСhange('BTC',currencySign,signDictionary[currencySign]);
 });
 
 $('.block__check').click(function() {
