@@ -30,23 +30,9 @@ let currencyСhange = function(cryptocurrency, currency, sign) {
 };
 
 $('.js-select').change(function() {
-  if($(this).val() === 'usd') {
-    currencyСhange('ETH','USD','$');
-    currencyСhange('LTC','USD','$');
-    currencyСhange('BTC','USD','$');
-  }else if($(this).val() === 'eur') {
-    currencyСhange('ETH','EUR','€');
-    currencyСhange('LTC','EUR','€');
-    currencyСhange('BTC','EUR','€');
-  }else if($(this).val() === 'rub') {
-    currencyСhange('ETH','RUB','₽');
-    currencyСhange('LTC','RUB','₽');
-    currencyСhange('BTC','RUB','₽');
-  }else if($(this).val() === 'gbp') {
-    currencyСhange('ETH','GBP','£');
-    currencyСhange('LTC','GBP','£');
-    currencyСhange('BTC','GBP','£');
-  }
+  currencyСhange('ETH',$(this).val().toUpperCase(),'$');
+  currencyСhange('LTC',$(this).val().toUpperCase(),'$');
+  currencyСhange('BTC',$(this).val().toUpperCase(),'$');
 });
 
 $('.block__check').click(function() {
