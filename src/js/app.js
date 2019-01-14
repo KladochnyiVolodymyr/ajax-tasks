@@ -20,13 +20,24 @@ $.ajax({
         success: function(info) {
           $('.post__title').html(info[0].title);
           $('.post__content').html(info[0].body);
-          $('.post__btn').attr('data-id',info[0].id);
+          //$('.post__btn').attr('data-id',info[0].id);
         },
         error: function(data) {
         }
       });
+      $.ajax({
+        url: 'https://jsonplaceholder.typicode.com/comments?postId='+ dataAttr +'',
+        success: function(comments) {
+          let commentsArr = comments.map(function(comment) {
+            return '<div class="comment"><p class="comment__name">'+ comment.name +'</p><p class="comment__email">'+ comment.email +'</p><p class="comment__body">'+ comment.body +'</p></div>';
+          });
+          $('.comments').html(commentsArr);
+        },
+        error: function(data) {   
+        }
+      });
     });
-    $('.js-comment').click(function() {
+    /* $('.js-comment').click(function() {
       let btnDataAttr = $(this).attr('data-id');
       $.ajax({
         url: 'https://jsonplaceholder.typicode.com/comments?postId='+ btnDataAttr +'',
@@ -39,7 +50,7 @@ $.ajax({
         error: function(data) {   
         }
       });
-    });
+    }); */
   },
   error: function(data) {
   }
