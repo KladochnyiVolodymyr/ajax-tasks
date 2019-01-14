@@ -1,0 +1,9 @@
+ProjectTitle: app
+
+PageList:
+- file: page.html
+  ready: 50
+- file: exchanger.html
+  ready: 50
+- file: form.html
+  ready: 50
