@@ -1,5 +1,5 @@
 
-$('.form').submit(function() { 
+/* $('.form').submit(function() { 
   var form_data = $(this).serialize(); 
   $.ajax({
     type: 'POST',
@@ -7,7 +7,7 @@ $('.form').submit(function() {
     data: form_data,
     success: function() {
     }});
-});
+}); */
 $.ajax({
   url: 'users.json',
   success: function(users) {
