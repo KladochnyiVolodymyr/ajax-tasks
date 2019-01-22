@@ -11,8 +11,23 @@ function geoFindMe() {
     $.ajax({
       url: 'https://fcc-weather-api.glitch.me/api/current?lat=' + latitude + '&lon=' + longitude,
       success: function(result) {
+        console.log(result);
         let locationName = result.name +','+ result.sys.country;
+        let temperature = result.main.temp;
+        let temperatureDef = '<div><span>' + temperature + '</span>°<a href="#" class="js-toggle-temp">C</a></div>';
         $('.weather__location').html(locationName);
+        $('.weather__temperature').html(temperatureDef);
+        $('.js-toggle-temp').click(function() {
+          $(this).toggleClass('is-F');
+          if($(this).hasClass('is-F')) {
+            $('.js-toggle-temp').html('F');
+            let temperatureFar = temperature * (9/5) + 32;
+            $('.weather__temperature span').html(temperatureFar);
+          }else{
+            $('.js-toggle-temp').html('C');
+            $('.weather__temperature span').html(temperature);
+          }
+        });
       },
       error: function(data) {
       }
