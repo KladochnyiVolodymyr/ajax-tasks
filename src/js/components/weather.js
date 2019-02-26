@@ -11,7 +11,7 @@ function geoFindMe() {
     $.ajax({
       url: 'https://fcc-weather-api.glitch.me/api/current?lat=' + latitude + '&lon=' + longitude,
       success: function(result) {
-        console.log(result);
+        //console.log(result);
         
         let locationName = result.name +','+ result.sys.country;
         let temperature = result.main.temp;

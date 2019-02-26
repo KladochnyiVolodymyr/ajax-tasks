@@ -2,6 +2,7 @@ import sayHello from './lib/sayHello.js';
 import './components/exchanger.js';
 import './components/form.js';
 import './components/weather.js';
+import './components/lodash-task';
 //import './components/new-exchanger.js';
 sayHello();
 
