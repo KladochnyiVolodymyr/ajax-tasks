@@ -14,3 +14,5 @@ console.log(_.isEqual(a,c));
 console.log(_.isEqual(a,d));
 
 console.log(minPrice);
+
+console.log(_.sortBy(products, ['prise', 'name']));
