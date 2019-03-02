@@ -16,3 +16,32 @@ console.log(_.isEqual(a,d));
 console.log(minPrice);
 
 console.log(_.sortBy(products, ['prise', 'name']));
+
+
+let firstObject = {
+  name: 'Vova',
+  age: 22
+};
+let secondObject = {
+  name: 'Vova',
+  age: 22
+};
+
+function myeq(firstObject,secondObject) {
+
+  for( let key in firstObject) {
+    if(secondObject.hasOwnProperty(key)) {
+
+      if( firstObject[key] === secondObject[key] ) {
+          
+      }else{
+        return console.log('false');
+      }
+      
+
+    }else{
+      return console.log('false');
+    }
+  }
+}
+myeq(firstObject,secondObject);
