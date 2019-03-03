@@ -1,11 +1,13 @@
 var _ = require('lodash');
 
 import {cities,a,b,c,d,products} from './variables';
+import {myeq} from './equalityObjects';
+import {copyObj} from './copyObject';
 
 let uniqRes = _.uniq(cities);
 let minPrice = _.minBy(products, 'prise');
 
-
+/*
 console.log(uniqRes);
 
 
@@ -16,32 +18,33 @@ console.log(_.isEqual(a,d));
 console.log(minPrice);
 
 console.log(_.sortBy(products, ['prise', 'name']));
-
+*/
 
 let firstObject = {
   name: 'Vova',
-  age: 22
+  age: 22,
+  test: NaN
 };
 let secondObject = {
   name: 'Vova',
-  age: 22
+  age: 22,
+  test: NaN
 };
 
-function myeq(firstObject,secondObject) {
+console.log(myeq(firstObject, secondObject));
 
-  for( let key in firstObject) {
-    if(secondObject.hasOwnProperty(key)) {
 
-      if( firstObject[key] === secondObject[key] ) {
-          
-      }else{
-        return console.log('false');
-      }
-      
-
-    }else{
-      return console.log('false');
-    }
+var oldObj = {
+  a: 1, 
+  b: 2, 
+  с: function() {
+    
   }
-}
-myeq(firstObject,secondObject);
+};
+
+var newObj = copyObj(oldObj);
+
+oldObj.с.test = 22;
+
+console.log(oldObj);
+console.log(newObj);
